@@ -1,6 +1,6 @@
 # SurveyJar GitHub 同步与本地研究材料
 
-程序仓库：[zh1peng/surveyjar](https://github.com/zh1peng/surveyjar)。默认分支为 `main`，可见性为私有。
+程序仓库：[zh1peng/surveyjar](https://github.com/zh1peng/surveyjar)。默认分支为 `main`，可见性为公开。
 
 ## 上传范围
 

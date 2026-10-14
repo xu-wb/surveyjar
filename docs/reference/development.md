@@ -54,10 +54,10 @@ docs/
 
 ## 托管路径
 
-文档按 GitHub Pages 项目路径 `/surveyjar/` 配置，目标路径为 `https://zh1peng.github.io/surveyjar/`。目标路径不代表已经上线。
+文档使用 GitHub Pages 托管，访问地址为 [SurveyJar 文档](https://zh1peng.github.io/surveyjar/)，项目路径配置为 `/surveyjar/`。
 
-仓库包含手动触发的文档部署工作流。启用 GitHub Pages 并选择 GitHub Actions 作为构建来源后，可以运行 **Deploy documentation**。
+GitHub Pages 使用 GitHub Actions 作为构建来源。更新文档并推送到 `main` 后，在 Actions 中手动运行 **Deploy documentation** 即可重新发布。
 
-当前程序仓库为私有，Pages 是否可用取决于账号与仓库设置；发布前需要明确文档的访问范围。文档构建仅处理 `docs/`，不会打包 `data/` 或 `local/`。
+程序仓库与文档站均为公开。文档构建仅处理 `docs/`，不会打包 `data/` 或 `local/`。
 
 导航与部署设置参考 [VitePress 官方文档](https://vitepress.dev/guide/deploy)。

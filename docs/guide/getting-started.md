@@ -12,14 +12,12 @@
 python --version
 ```
 
-已有项目文件夹时直接使用即可。有仓库访问权限的用户也可以克隆：
+已有项目文件夹时直接使用即可，也可以从公开仓库克隆：
 
 ```sh
 git clone https://github.com/zh1peng/surveyjar.git
 cd surveyjar
 ```
-
-当前仓库为私有，克隆时需要有权限的 GitHub 账号。
 
 ## 2. 启动工作台
 

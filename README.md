@@ -53,6 +53,8 @@ Git 只跟踪程序、测试、模板和文档。`.gitignore` 排除 `data/`、`
 
 ## 文档站
 
+在线阅读：[SurveyJar 文档](https://zh1peng.github.io/surveyjar/)。
+
 VitePress 文档源码位于 `docs/`，包含安装、导入、计分、项目、导出与备份说明。准备 Node.js 22 或更新版本后执行：
 
 ```sh
