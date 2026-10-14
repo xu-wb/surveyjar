@@ -53,6 +53,16 @@ class ScoringTests(unittest.TestCase):
         result, _ = score(s, {'a': '0', 'b': '0'})
         self.assertEqual(result['total'], 5)
 
+    def test_single_and_multi_answer_shapes(self):
+        for answer in (['0'], ['0', '1'], [], {}, True):
+            with self.subTest(answer=answer), self.assertRaises(ValueError):
+                score(self.survey, {'a': answer})
+        self.survey['questions'][0]['type'] = 'multi'
+        with self.assertRaises(ValueError):
+            score(self.survey, {'a': '0'})
+        self.assertEqual(score(self.survey, {'a': ['0', '1']})[0]['details'][0]['rawScore'], 1)
+        self.assertIsNone(score(self.survey, {'a': []})[0]['details'][0]['rawScore'])
+
 
 if __name__ == '__main__':
     unittest.main()

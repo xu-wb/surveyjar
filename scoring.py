@@ -7,6 +7,8 @@ def aggregate(values, method):
     return sum(values) / len(values) if method == 'mean' else sum(values)
 
 def score(survey, answers):
+    if not isinstance(answers, dict) or set(answers) - {q['id'] for q in survey['questions']}:
+        raise ValueError('回答应为按题目 ID 对应的对象，不能包含未知题目')
     details, missing = [], []
     raw_only = survey.get('scoreMode') == 'raw'
     for q in survey['questions']:
@@ -14,14 +16,18 @@ def score(survey, answers):
         empty = value is None or value == '' or value == []
         raw = points = None
         mode = q.get('scoring', 'none')
+        if q['type'] in ('single', 'multi', 'forced') and value is not None:
+            multiple = q['type'] == 'multi' or (q['type'] == 'forced' and q.get('chooseCount', 1) > 1)
+            if (multiple and not isinstance(value, list)) or (not multiple and type(value) not in (str, int)):
+                raise ValueError('选择题回答格式不正确：' + q['title'])
+        if q['type'] == 'text' and value is not None and not isinstance(value, str):
+            raise ValueError('文本题回答应为文本：' + q['title'])
         if q['type'] == 'forced':
             count = q.get('chooseCount', 1)
             if len(q.get('options', [])) < 2 or type(count) is not int or not 1 <= count < len(q['options']):
                 raise ValueError('迫选题的选择数量须为整数且小于选项数量：' + q['title'])
             if not empty:
                 chosen = value if isinstance(value, list) else [value]
-                if isinstance(value, dict) or (count == 1 and isinstance(value, list)):
-                    raise ValueError('迫选题回答格式不正确：' + q['title'])
                 if len(chosen) != count:
                     empty = True
         reverse = q.get('reverse', False) or mode == 'reverse'
@@ -40,8 +46,10 @@ def score(survey, answers):
                 answers[q['id']] = value
         elif not empty and q['type'] in ('single', 'multi', 'forced'):
             chosen = value if isinstance(value, list) else [value]
-            if len(set(chosen)) != len(chosen) or any(not str(i).isdigit() or not 0 <= int(i) < len(q['options']) for i in chosen):
+            if any(type(i) not in (str, int) or not str(i).isdecimal() or not 0 <= int(i) < len(q['options']) for i in chosen):
                 raise ValueError('无效选项：' + q['title'])
+            if len({int(i) for i in chosen}) != len(chosen):
+                raise ValueError('选项不能重复：' + q['title'])
             if mode != 'none':
                 vals = [float(o['score']) if mode == 'custom' or survey.get('scoreVersion') == 2 else i+1
                         for i, o in enumerate(q['options'])]
@@ -49,6 +57,8 @@ def score(survey, answers):
                 raw = sum(raw_values)
                 points = sum(max(vals)+min(vals)-v if reverse else v for v in raw_values)
         elif not empty and q['type'] in ('scale', 'number'):
+            if type(value) not in (str, int, float):
+                raise ValueError('数字题回答格式不正确：' + q['title'])
             number = float(value)
             if not math.isfinite(number) or not float(q['min']) <= number <= float(q['max']):
                 raise ValueError('数字超出范围：' + q['title'])

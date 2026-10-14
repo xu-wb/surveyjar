@@ -1,5 +1,7 @@
 # SurveyJar · 本地问卷工具
 
+当前版本：**0.1.0**。
+
 在本机创建、导入和填写问卷，管理研究项目与批量作答，导出计分宽表。使用 Python 标准库、SQLite 和原生 HTML/CSS/JavaScript，无第三方依赖，无须安装 npm 或构建前端。
 
 ## 启动
@@ -53,9 +55,10 @@ Git 只跟踪程序、测试、模板和文档。`.gitignore` 排除 `data/`、`
 
 ```sh
 python -m unittest discover -s tests -v
+node --test tests/test_web.cjs
 ```
 
-测试使用构造数据，不依赖个人问卷或本地数据库。
+测试使用构造数据，不依赖个人问卷或本地数据库。前端回归测试需要 Node.js，运行工具本身不需要。
 
 ## 使用边界
 

@@ -17,7 +17,7 @@ function itemScoring(q,i){
 }
 function substanceAnswer(q,v={}){
   v=v&&typeof v==='object'?v:{};
-  return `<div class="actions">${[['no','否，未使用过'],['yes','是，使用过']].map(([value,label])=>`<label class="answer-option"><input type="radio" data-answer="${q.id}" data-part="used" name="${q.id}" value="${value}" ${v.used===value?'checked':''}>${label}</label>`).join('')}</div><div data-duration-box="${q.id}" ${v.used==='yes'?'':'hidden'} style="margin-top:15px"><label class="field">使用时长（年，可填小数）<input type="number" min="0.001" step="any" data-answer="${q.id}" data-part="duration" value="${esc(v.duration??'')}" ${v.used==='yes'?'':'disabled'} placeholder="例如 2 或 0.5"></label></div>`;
+  return `<div class="actions">${[['no','否，未使用过'],['yes','是，使用过']].map(([value,label])=>`<label class="answer-option"><input type="radio" data-answer="${esc(q.id)}" data-part="used" name="${esc(q.id)}" value="${value}" ${v.used===value?'checked':''}>${label}</label>`).join('')}</div><div data-duration-box="${esc(q.id)}" ${v.used==='yes'?'':'hidden'} style="margin-top:15px"><label class="field">使用时长（年，可填小数）<input type="number" min="0.001" step="any" data-answer="${esc(q.id)}" data-part="duration" value="${esc(v.duration??'')}" ${v.used==='yes'?'':'disabled'} placeholder="例如 2 或 0.5"></label></div>`;
 }
 function getAnswerValue(el,id){
   if(el.dataset.part){
