@@ -45,12 +45,15 @@ docs/
 ├── guide/                   # 面向使用者的操作说明
 ├── reference/               # 版本与开发说明
 ├── public/logo.svg          # 文档标志与 favicon
+├── public/screenshots/      # 独立演示库的操作截图
 └── .vitepress/
     ├── config.mjs           # 导航、搜索、中文界面
     └── theme/               # 配色和版式
 ```
 
 应用使用 `web/logo.svg`，文档使用 `docs/public/logo.svg`。两处是同一标志的静态副本；修改品牌资源时同步更新两处。
+
+使用指南的操作图解由 `AnnotatedScreenshot.vue` 展示。Markdown 中的 `steps` 按图片百分比设置框线位置，并保存对应的步骤说明。更新界面截图时，应同步核对编号位置和说明；截图只使用独立演示数据。
 
 ## 托管路径
 
