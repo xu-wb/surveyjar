@@ -58,4 +58,4 @@ Windows 也可以双击 **启动SurveyJar.cmd**。浏览器会打开 `http://127
 SurveyJar 适合同一台电脑上的本地收集。它不提供在线发布、远程填写、研究人员权限或数据库加密；计分规则由使用者配置，程序不判断量表的有效性。
 :::
 
-<div class="doc-signature">SurveyJar 0.1.0 · 由 zh1peng 维护 · 数据保存在你的电脑上</div>
+<div class="doc-signature">SurveyJar 0.1.0 · 徐弋：主要开发、维护与测试 · zh1peng：项目指导与维护 · 数据保存在你的电脑上</div>
