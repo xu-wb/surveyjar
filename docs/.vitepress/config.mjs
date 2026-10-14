@@ -17,6 +17,7 @@ export default defineConfig({
       {text: '入门', link: '/guide/getting-started'},
       {text: '使用指南', link: '/guide/importing'},
       {text: '计分与导出', link: '/guide/scoring'},
+      {text: '开发者', link: '/developers'},
       {text: `v${version}`, items: [
         {text: '更新记录', link: '/reference/changelog'},
         {text: '开发与文档', link: '/reference/development'},
@@ -40,7 +41,7 @@ export default defineConfig({
         {text: '常见问题', link: '/guide/faq'},
         {text: '更新记录', link: '/reference/changelog'},
         {text: '开发与文档', link: '/reference/development'},
-        {text: 'GitHub 同步', link: '/github-sync'},
+        {text: '开发者', link: '/developers'},
       ]},
     ],
     outline: {label: '本页目录', level: [2, 3]},

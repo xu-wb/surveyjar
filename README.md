@@ -35,7 +35,7 @@ surveyjar/
 ├── web/                     # 浏览器界面
 ├── tests/                   # 使用构造数据的单元测试
 ├── examples/                # 可共享的通用导入模板
-├── docs/                    # 使用及同步说明
+├── docs/                    # 使用与开发文档
 ├── 启动SurveyJar.cmd         # Windows 启动入口
 ├── data/                    # 本地数据库及备份，不上传
 └── local/                   # 本地研究材料和记录，不上传
@@ -49,7 +49,7 @@ Git 只跟踪程序、测试、模板和文档。`.gitignore` 排除 `data/`、`
 
 问卷、项目设置、正式答卷和填写草稿保存在 `data/questionnaires.sqlite3`。个人文档放入 `local/materials/`，研究修改记录放入 `local/notes/`，导出结果放入 `exports/` 或项目目录以外。
 
-具体上传步骤和更新方式见 [GitHub 同步指南](docs/github-sync.md)。GitHub 上的程序仓库不备份本地研究数据。更换电脑时，应另外迁移数据库和研究材料。
+GitHub 上的程序仓库不备份本地研究数据。更换电脑时，应另外迁移数据库和研究材料。
 
 ## 文档站
 
