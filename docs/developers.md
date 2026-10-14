@@ -20,7 +20,7 @@ const members = [
     avatar: withBase('/team/zh1peng.png'),
     name: 'zh1peng',
     title: '项目指导与维护',
-    desc: '<a href="https://github.com/zh1peng" target="_blank" rel="noreferrer">访问 GitHub 主页 ↗</a>',
+    desc: '<a href="https://zh1peng.top/" target="_blank" rel="noreferrer">访问个人主页 ↗</a><br><a href="https://github.com/zh1peng" target="_blank" rel="noreferrer">访问 GitHub 主页 ↗</a>',
     links: [{ icon: 'github', link: 'https://github.com/zh1peng' }]
   }
 ]
