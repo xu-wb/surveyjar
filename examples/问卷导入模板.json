@@ -1,0 +1,10 @@
+{
+  "title": "自定义计分示例",
+  "description": "可复制 questions 中的题目对象增加题目，每道题的 id 应唯一。",
+  "questions": [
+    {"id":"q1","title":"请选择符合你的选项","type":"single","required":true,"scoring":"custom","options":[{"label":"不符合","score":0},{"label":"部分符合","score":2},{"label":"完全符合","score":5}]},
+    {"id":"q2","title":"请为当前状态打分","type":"scale","required":true,"scoring":"reverse","min":1,"max":5},
+    {"id":"q3","title":"过去一周参与了几次活动？","type":"number","required":false,"scoring":"custom","min":0,"max":7,"mapping":{"0":0,"1":1,"2":3,"3":5,"4":5,"5":5,"6":5,"7":5}},
+    {"id":"q4","title":"补充说明","type":"text","required":false,"scoring":"none"}
+  ]
+}

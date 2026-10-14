@@ -1,0 +1,24 @@
+# Local research data, materials and exports (never shared)
+/data/
+/local/
+/exports/
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+
+# Python runtime
+__pycache__/
+*.py[cod]
+.venv/
+
+# Local credentials and editor settings
+.env
+.env.*
+!.env.example
+/.vscode/
+/.idea/
+*.log
+~$*
+.DS_Store
+Thumbs.db
