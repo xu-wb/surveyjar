@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">SurveyJar</title>
+  <desc id="desc">深绿色罐子收纳一张带薄荷绿勾选标记的答卷。</desc>
+  <path d="M61 43h70v24c0 10 22 15 22 35v44c0 17-11 28-28 28H67c-17 0-28-11-28-28v-44c0-20 22-25 22-35V43Z" fill="#E9F5EE" stroke="#164C3D" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M49 122v23c0 12 7 19 19 19h57c12 0 18-7 18-19v-23c-21 14-40-8-60-4-13 2-21 8-34 4Z" fill="#A5DFBE"/>
+  <path d="m77 76 45 5a9 9 0 0 1 8 10l-6 53a9 9 0 0 1-10 8l-45-5a9 9 0 0 1-8-10l6-53a9 9 0 0 1 10-8Z" fill="white" stroke="#164C3D" stroke-width="5"/>
+  <path d="m80 99 6 7 13-13" stroke="#2D9B73" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m78 121 30 3m-32 11 22 3" stroke="#84CBA9" stroke-width="5" stroke-linecap="round"/>
+  <rect x="52" y="26" width="88" height="24" rx="9" fill="#164C3D"/>
+  <path d="M66 38h60" stroke="#A5DFBE" stroke-width="5" stroke-linecap="round"/>
+  <path d="M160 54v16m-8-8h16" stroke="#2D9B73" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="33" cy="80" r="4" fill="#D5AB5A"/>
+</svg>
