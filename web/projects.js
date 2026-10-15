@@ -34,8 +34,9 @@ function syncBatchParticipant(){
   run.survey.questions.filter(isBatchParticipantQuestion).forEach(q=>{run.answers[q.id]=run.participant;});
 }
 function participantFields(){
+  if(run.preview)return '';
   if(run.batchId){const b=batches.find(x=>x.id===run.batchId);return `<div class="panel"><strong>${esc(run.projectName)} · 被试 ${esc(run.participant)}</strong><p>第 ${run.batchIndex+1} / ${b?.surveys.length||'?'} 份问卷 · 批次 ${run.batchId}</p></div>`;}
-  return `<div class="panel"><label class="field">被试编号（选填；批量完成多问卷请使用项目）<input data-participant value="${esc(run.participant||'')}" placeholder="例如 S001"></label></div>`;
+  return `<div class="panel"><label class="field">被试编号（必填）<span class="required">*</span><input required form="answer-form" data-participant value="${esc(run.participant||'')}" placeholder="例如 S001"></label></div>`;
 }
 app.addEventListener('input',e=>{if(e.target.id==='project-name')projectDraft.name=e.target.value;if(e.target.hasAttribute('data-participant')){run.participant=e.target.value;if(run.preview)return;localStorage.setItem('questionnaire-answer',JSON.stringify(run));clearTimeout(timer);timer=setTimeout(()=>queueSave().catch(err=>toast(err.message)),600);}});
 app.addEventListener('change',e=>{if(e.target.dataset.projectSurvey!==undefined){const id=Number(e.target.dataset.projectSurvey);if(e.target.checked)projectDraft.surveyIds.push(id);else projectDraft.surveyIds=projectDraft.surveyIds.filter(x=>x!==id);projectEditor();}});

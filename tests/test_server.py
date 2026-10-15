@@ -56,7 +56,7 @@ class ServerValidationTests(unittest.TestCase):
     def test_answer_shape_and_status_are_checked_before_storage(self):
         status, created = self.post('surveys', self.survey)
         self.assertEqual(status, 200)
-        body = {'survey_id': created['id'], 'survey': self.survey, 'status': 'submitted', 'answers': {'q1': '0'}}
+        body = {'participant': 'S001', 'survey_id': created['id'], 'survey': self.survey, 'status': 'submitted', 'answers': {'q1': '0'}}
         for changes in ({'answers': {'q1': ['0', '1']}}, {'answers': {'q1': []}}, {'status': 'other'}):
             with self.subTest(changes=changes):
                 self.assertEqual(self.post('responses', {**body, **changes})[0], 400)
@@ -71,7 +71,7 @@ class ServerValidationTests(unittest.TestCase):
         sid = self.post('surveys', self.survey)[1]['id']
         forged = deepcopy(self.survey)
         forged['questions'][0]['type'] = 'multi'
-        body = {'survey_id': sid, 'survey': forged, 'status': 'draft', 'answers': {'q1': ['0', '1']}}
+        body = {'participant': 'S001', 'survey_id': sid, 'survey': forged, 'status': 'draft', 'answers': {'q1': ['0', '1']}}
         self.assertEqual(self.post('responses', body)[0], 400)
         body['answers'] = {'q1': '0'}
         rid = self.post('responses', body)[1]['id']
@@ -106,3 +106,28 @@ class ServerValidationTests(unittest.TestCase):
         handler.send_json = lambda data, status=200: result.append(status)
         handler.do_DELETE()
         self.assertEqual(result, [403])
+
+    def test_participant_required_on_submission_but_not_draft(self):
+        sid = self.post('surveys', self.survey)[1]['id']
+        body = {'survey_id': sid, 'status': 'submitted', 'answers': {'q1': '0'}}
+        for participant in (None, '', '   '):
+            status, result = self.post('responses', {**body, 'participant': participant})
+            self.assertEqual(status, 400)
+            self.assertEqual(result['error'], '请填写被试编号')
+        status, draft = self.post('responses', {**body, 'status': 'draft'})
+        self.assertEqual(status, 200)
+        self.assertEqual(self.post('responses', {**body, 'id': draft['id'], 'participant': ' S001 '})[0], 200)
+        with sqlite3.connect(server.DB) as db:
+            stored = json.loads(db.execute('SELECT body FROM responses WHERE id=?', (draft['id'],)).fetchone()[0])
+        self.assertEqual(stored['participant'], 'S001')
+
+    def test_batch_responses_inherit_participant(self):
+        sid = self.post('surveys', self.survey)[1]['id']
+        pid = self.post('projects', {'name': '测试项目', 'surveyIds': [sid]})[1]['id']
+        bid = self.post('batches', {'projectId': pid, 'participant': 'S002'})[1]['id']
+        status, saved = self.post('responses', {'survey_id': sid, 'batchId': bid, 'batchIndex': 0,
+                                               'status': 'submitted', 'answers': {'q1': '0'}})
+        self.assertEqual(status, 200)
+        with sqlite3.connect(server.DB) as db:
+            stored = json.loads(db.execute('SELECT body FROM responses WHERE id=?', (saved['id'],)).fetchone()[0])
+        self.assertEqual(stored['participant'], 'S002')
