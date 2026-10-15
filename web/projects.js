@@ -34,6 +34,7 @@ function syncBatchParticipant(){
   run.survey.questions.filter(isBatchParticipantQuestion).forEach(q=>{run.answers[q.id]=run.participant;});
 }
 function participantFields(){
+  if(run.preview)return '';
   if(run.batchId){const b=batches.find(x=>x.id===run.batchId);return `<div class="panel"><strong>${esc(run.projectName)} · 被试 ${esc(run.participant)}</strong><p>第 ${run.batchIndex+1} / ${b?.surveys.length||'?'} 份问卷 · 批次 ${run.batchId}</p></div>`;}
   return `<div class="panel"><label class="field">被试编号（必填）<span class="required">*</span><input required form="answer-form" data-participant value="${esc(run.participant||'')}" placeholder="例如 S001"></label></div>`;
 }
