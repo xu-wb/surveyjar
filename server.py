@@ -224,6 +224,9 @@ class Handler(SimpleHTTPRequestHandler):
                         if not row:
                             raise ValueError('问卷不存在')
                         body['survey'] = json.loads(row['body'])
+                    body['participant'] = (body.get('participant') or '').strip()
+                    if body['status'] == 'submitted' and not body['participant']:
+                        raise ValueError('请填写被试编号')
                     result, missing = score(body['survey'], body['answers'])
                     if body['status'] == 'submitted' and missing:
                         return self.send_json({'error': '请完成必填题：' + '、'.join(missing)}, 400)

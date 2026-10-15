@@ -20,3 +20,17 @@ body.answer-mode > main{margin-left:0}
 .question-group > .panel{box-shadow:none;border-bottom:1px solid #e2e8f0;margin:0}
 body.answer-mode #app{max-width:960px;padding:32px 24px 64px}
 @media(max-width:600px){body.answer-mode #app{padding:20px 16px 40px}}
+
+.answer-actions{display:grid;grid-template-columns:minmax(100px,auto) 1fr minmax(100px,auto)}
+.answer-actions .hint{text-align:center}
+@media(max-width:400px){.answer-actions .hint{grid-column:1 / -1;grid-row:2}.answer-actions [data-action="exit-answer"]{grid-column:3;grid-row:1}}
+
+.survey-toolbar{margin-bottom:16px}
+.survey-table{min-width:850px}
+.survey-table td,.survey-table th{padding:12px 10px}
+.survey-table .survey-name{border:0;background:transparent;color:var(--green);padding:0;text-align:left;font-weight:600;white-space:normal;min-width:150px;max-width:280px;overflow-wrap:anywhere}
+.survey-table .survey-name:hover{text-decoration:underline}
+.survey-description{display:block;width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#7d8c83}
+
+.survey-filters label{display:flex;align-items:center;gap:8px;white-space:nowrap}.survey-filters select{width:200px}.survey-filters{justify-content:flex-end}
+@media(max-width:800px){.sectionbar:has(.survey-filters){flex-wrap:wrap}.survey-filters{justify-content:flex-start}}
