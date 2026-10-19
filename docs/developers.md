@@ -10,11 +10,13 @@ import { withBase } from 'vitepress'
 
 const members = [
   {
-    // 徐弋后续可替换头像，并添加个人主页链接（参考下方 zh1peng 的 links）。
-    avatar: withBase('/team/xu-yi.svg'),
-    name: '徐弋',
+    avatar: 'https://github.com/xu-wb.png',
+    name: 'Aster',
     title: '主要开发、维护与测试',
-    desc: '头像与个人主页待补充。'
+    desc: '参与 SurveyJar 的功能开发、维护与测试。',
+    links: [
+      { icon: 'github', link: 'https://github.com/xu-wb' }
+    ]
   },
   {
     avatar: withBase('/team/zh1peng.png'),
